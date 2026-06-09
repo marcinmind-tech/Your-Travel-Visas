@@ -34,20 +34,27 @@ const searchInput = document.querySelector("#countrySearch");
 const heroSearch = document.querySelector("#heroSearch");
 const destinationSelect = document.querySelector("#destinationSelect");
 const emptyState = document.querySelector("#emptyState");
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
 let currentFilter = "all";
 let openCard = "";
 
-function pageLink(country) {
-  return `visa-pages/${country.slug}.html`;
+function pageLink(country){return `visa-pages/${country.slug}.html`;}
+
+function splitHeroTitle(){
+  const title = document.querySelector(".animated-title");
+  if(!title || title.dataset.animated === "true") return;
+  const words = title.textContent.trim().split(/\s+/);
+  title.innerHTML = words.map((word, index) => `<span class="reveal-word" style="animation-delay:${index * 0.09}s">${word}</span>`).join(" ");
+  title.dataset.animated = "true";
 }
 
-function renderCountries() {
-  const query = searchInput.value.trim().toLowerCase();
+function renderCountries(){
+  if(!grid) return;
+  const query = (searchInput?.value || "").trim().toLowerCase();
   const filtered = visaCountries.filter(country => {
     const haystack = `${country.name} ${country.type} ${country.region}`.toLowerCase();
-    const matchesFilter = currentFilter === "all" || country.region === currentFilter;
-    const matchesSearch = haystack.includes(query);
-    return matchesFilter && matchesSearch;
+    return (currentFilter === "all" || country.region === currentFilter) && haystack.includes(query);
   });
 
   grid.innerHTML = filtered.map(country => {
@@ -69,7 +76,7 @@ function renderCountries() {
             <b>Basic document checklist</b>
             <ul>${country.documents.map(item => `<li>${item}</li>`).join("")}</ul>
             <b>FAQs</b>
-            <div class="faq-list">${country.faqs.map((q, index) => `<details><summary>${q}</summary><p>Our team will confirm the latest requirement based on your passport, travel purpose and date of travel.</p></details>`).join("")}</div>
+            <div class="faq-list">${country.faqs.map(q => `<details><summary>${q}</summary><p>Our team will confirm the latest requirement based on your passport, travel purpose and date of travel.</p></details>`).join("")}</div>
             <div class="detail-contact">
               <a href="tel:${contactPhone.replace(/\s/g, "")}">Call now</a>
               <a href="mailto:${contactEmail}?subject=${encodeURIComponent(country.name + " visa enquiry")}">Email us</a>
@@ -77,26 +84,26 @@ function renderCountries() {
             </div>
           </div>
         </div>
-      </article>
-    `;
+      </article>`;
   }).join("");
-  emptyState.style.display = filtered.length ? "none" : "block";
+  if(emptyState) emptyState.style.display = filtered.length ? "none" : "block";
 }
 
-function populateDestinations() {
-  destinationSelect.innerHTML += visaCountries.map(country => `<option value="${country.name}">${country.name}</option>`).join("");
+function populateDestinations(){
+  if(!destinationSelect) return;
+  destinationSelect.innerHTML = `<option value="">Choose country</option>` + visaCountries.map(country => `<option value="${country.name}">${country.name}</option>`).join("");
 }
 
-function jumpToCountry(slugOrName) {
-  const value = slugOrName.trim().toLowerCase();
-  const country = visaCountries.find(item => item.slug === value || item.name.toLowerCase() === value);
-  if (!country) return;
+function jumpToCountry(value){
+  const searchValue = (value || "").trim().toLowerCase();
+  const country = visaCountries.find(item => item.slug === searchValue || item.name.toLowerCase() === searchValue || item.name.toLowerCase().includes(searchValue));
+  if(!country) return;
   currentFilter = "all";
   openCard = country.slug;
   document.querySelectorAll(".filter-pills button").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === "all"));
-  searchInput.value = country.name;
+  if(searchInput) searchInput.value = country.name;
   renderCountries();
-  document.querySelector("#countries").scrollIntoView({ behavior: "smooth" });
+  document.querySelector("#countries")?.scrollIntoView({behavior:"smooth"});
 }
 
 document.querySelectorAll(".filter-pills button").forEach(button => {
@@ -109,38 +116,44 @@ document.querySelectorAll(".filter-pills button").forEach(button => {
   });
 });
 
-searchInput.addEventListener("input", () => { openCard = ""; renderCountries(); });
-document.querySelector("#clearSearch").addEventListener("click", () => { searchInput.value = ""; openCard = ""; renderCountries(); });
-document.querySelector("#heroSearchBtn").addEventListener("click", () => jumpToCountry(heroSearch.value));
-heroSearch.addEventListener("keydown", event => { if (event.key === "Enter") jumpToCountry(heroSearch.value); });
+searchInput?.addEventListener("input", () => {openCard = ""; renderCountries();});
+document.querySelector("#clearSearch")?.addEventListener("click", () => {searchInput.value = ""; openCard = ""; renderCountries(); searchInput.focus();});
+document.querySelector("#heroSearchBtn")?.addEventListener("click", () => jumpToCountry(heroSearch?.value));
+heroSearch?.addEventListener("keydown", event => {if(event.key === "Enter") jumpToCountry(heroSearch.value);});
 
 document.addEventListener("click", event => {
   const enquireBtn = event.target.closest("[data-enquire]");
-  const jumpBtn = event.target.closest("[data-country-jump]");
   const detailsBtn = event.target.closest("[data-toggle-details]");
-  if (enquireBtn) {
-    destinationSelect.value = enquireBtn.dataset.enquire;
-    document.querySelector("#enquiry").scrollIntoView({ behavior: "smooth" });
+  if(enquireBtn){
+    if(destinationSelect) destinationSelect.value = enquireBtn.dataset.enquire;
+    document.querySelector("#enquiry")?.scrollIntoView({behavior:"smooth"});
   }
-  if (jumpBtn) jumpToCountry(jumpBtn.dataset.countryJump);
-  if (detailsBtn) {
+  if(detailsBtn){
     openCard = openCard === detailsBtn.dataset.toggleDetails ? "" : detailsBtn.dataset.toggleDetails;
     renderCountries();
-    document.querySelector(`#${detailsBtn.dataset.toggleDetails}`).scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => document.querySelector(`#${detailsBtn.dataset.toggleDetails}`)?.scrollIntoView({behavior:"smooth", block:"center"}), 30);
   }
 });
 
-document.querySelector(".menu-toggle").addEventListener("click", event => {
-  const nav = document.querySelector(".nav-links");
-  nav.classList.toggle("open");
-  event.currentTarget.setAttribute("aria-expanded", nav.classList.contains("open"));
+menuToggle?.addEventListener("click", event => {
+  navLinks?.classList.toggle("open");
+  menuToggle.classList.toggle("open");
+  event.currentTarget.setAttribute("aria-expanded", navLinks?.classList.contains("open") ? "true" : "false");
 });
 
-document.querySelector("#enquiryForm").addEventListener("submit", event => {
+document.querySelectorAll(".nav-links a").forEach(link => link.addEventListener("click", () => {
+  navLinks?.classList.remove("open");
+  menuToggle?.classList.remove("open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+}));
+
+document.querySelector("#enquiryForm")?.addEventListener("submit", event => {
   event.preventDefault();
-  document.querySelector("#formNote").textContent = "Thank you. Your visa enquiry has been captured.";
+  const note = document.querySelector("#formNote");
+  if(note) note.textContent = "Thank you. Your visa enquiry has been captured.";
   event.currentTarget.reset();
 });
 
+splitHeroTitle();
 populateDestinations();
 renderCountries();

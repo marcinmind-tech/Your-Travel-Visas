@@ -5,23 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Travel Visas | Premium Visa Assistance</title>
   <meta name="description" content="Your Travel Visas provides premium visa assistance for tourist, business and family travel across Asia, Gulf, Europe and Oceania." />
-  <link rel="icon" href="images/logo.jpeg" type="image/jpeg">
-<link rel="shortcut icon" href="images/logo.jpeg" type="image/jpeg">
-<link rel="apple-touch-icon" href="images/logo.jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="icon" href="images/logo.jpeg?v=5" type="image/jpeg" />
+  <link rel="shortcut icon" href="images/logo.jpeg?v=5" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="images/logo.jpeg?v=5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
   <header class="site-header" id="top">
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
       <a href="#top" class="brand" aria-label="Your Travel Visas home">
         <img src="images/logo.jpeg" alt="Your Travel Visas logo" />
-        <span>Your Travel Visas</span>
-      </a>
-      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+        <span class="brand-name">
+          <span>Your</span>
+          <span>Travel</span>
+          <span>Visas</span>
+        </span>
+    </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
       <div class="nav-links">
         <a href="#countries">Countries</a>
         <a href="#process">Process</a>
@@ -32,72 +43,88 @@
   </header>
 
   <main>
-    <section class="hero section-shell">
-      <div class="hero-content">
-        <p class="eyebrow">Premium visa assistance for international travel</p>
-        <h1>Visa support that feels organised, clear and travel-ready.</h1>
-        <p class="hero-text">From destination selection to document guidance, Your Travel Visas helps travellers move through the visa process with confidence and personal support.</p>
-        <div class="hero-actions">
-          <a href="#countries" class="btn primary">Explore Visa Countries</a>
-          <a href="#enquiry" class="btn ghost">Request a Callback</a>
-        </div>
-        <div class="trust-row" aria-label="Service highlights">
-          <span><strong>25+</strong> Destinations</span>
-          <span><strong>1:1</strong> Guidance</span>
-          <span><strong>Secure</strong> Document Handling</span>
-        </div>
+    <section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="section-shell hero-inner">
+      <p class="eyebrow hero-eyebrow">
+        Premium visa assistance for global travellers
+      </p>
+
+      <h1 class="animated-title">
+        Choose your destination. We’ll handle the visa.
+      </h1>
+
+      <p class="hero-text">
+        Your Travel Visas helps travellers prepare documents,
+        understand requirements and submit enquiries with confidence.
+      </p>
+
+      <div class="hero-search-panel" aria-label="Visa country finder">
+        <i class="fa-solid fa-location-dot"></i>
+
+        <select id="heroSearch">
+          <option value="">Search for a country</option>
+
+          <option value="Malaysia">Malaysia</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Thailand">Thailand</option>
+          <option value="Vietnam">Vietnam</option>
+          <option value="Japan">Japan</option>
+          <option value="Cambodia">Cambodia</option>
+          <option value="Philippines">Philippines</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="Maldives">Maldives</option>
+          <option value="Bhutan">Bhutan</option>
+          <option value="Hong Kong">Hong Kong</option>
+          <option value="Bali">Bali</option>
+
+          <option value="Dubai">Dubai</option>
+          <option value="Saudi Arabia">Saudi Arabia</option>
+
+          <option value="Turkey">Turkey</option>
+          <option value="Azerbaijan">Azerbaijan</option>
+          <option value="Schengen">Schengen</option>
+          <option value="France">France</option>
+          <option value="Italy">Italy</option>
+          <option value="Greece">Greece</option>
+          <option value="Spain">Spain</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="United Kingdom">United Kingdom</option>
+
+          <option value="Australia">Australia</option>
+          <option value="New Zealand">New Zealand</option>
+        </select>
+
+        <button type="button" id="heroSearchBtn" aria-label="Search visa country">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
-
-      <aside class="visa-finder-card" aria-label="Visa search dashboard">
-        <div class="finder-top">
-          <span class="status-dot"></span>
-          <p>Visa Country Finder</p>
-        </div>
-        <label for="heroSearch">Search your destination</label>
-        <div class="search-box compact">
-          <input id="heroSearch" type="search" placeholder="Malaysia, Dubai, Schengen..." autocomplete="off" />
-          <button type="button" id="heroSearchBtn">Search</button>
-        </div>
-        <div class="mini-stats">
-          <div><b>25+</b><small>Visa options</small></div>
-          <div><b>4</b><small>Travel regions</small></div>
-        </div>
-        <div class="hero-card-list">
-          <p>Popular searches</p>
-          <button data-country-jump="dubai">Dubai Visa</button>
-          <button data-country-jump="malaysia">Malaysia Visa</button>
-          <button data-country-jump="schengen">Schengen Visa</button>
-        </div>
-      </aside>
-    </section>
-
-    <section class="section-shell logo-strip" aria-label="Service promise">
-      <span>Tourist & business visas</span>
-      <span>Document checklist support</span>
-      <span>Application guidance</span>
-      <span>Contact-first service</span>
-    </section>
+    </div>
+  </section>
 
     <section class="section-shell dashboard" id="countries">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Visa country search engine</p>
-          <h2>Choose a country and view the details instantly.</h2>
+          <p class="eyebrow">Popular destinations</p>
+          <h2>Visa support for the countries travellers choose most.</h2>
         </div>
-        <p>Search or filter by region. Open any visa card to view required details, FAQs and contact options.</p>
+        <p>Search or filter by region. Open any visa card to view checklist, FAQs and contact options.</p>
       </div>
 
       <div class="toolbar">
         <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
           <input type="search" id="countrySearch" placeholder="Search visa country..." autocomplete="off" />
           <button type="button" id="clearSearch">Clear</button>
         </div>
+
         <div class="filter-pills" role="list" aria-label="Country filters">
-          <button class="active" data-filter="all">All</button>
-          <button data-filter="asia">Asia</button>
-          <button data-filter="gulf">Gulf</button>
-          <button data-filter="europe">Europe</button>
-          <button data-filter="oceania">Oceania</button>
+          <button class="active" type="button" data-filter="all">All</button>
+          <button type="button" data-filter="asia">Asia</button>
+          <button type="button" data-filter="gulf">Gulf</button>
+          <button type="button" data-filter="europe">Europe</button>
+          <button type="button" data-filter="oceania">Oceania</button>
         </div>
       </div>
 
@@ -105,16 +132,19 @@
       <p class="empty-state" id="emptyState">No country found. Try another destination.</p>
     </section>
 
-    <section class="section-shell process" id="process">
-      <div class="section-heading centered">
-        <p class="eyebrow">Clear steps from enquiry to travel</p>
-        <h2>A simple visa process for busy travellers.</h2>
-      </div>
-      <div class="process-grid">
-        <article><span>01</span><h3>Select destination</h3><p>Pick your visa country and share your travel purpose.</p></article>
-        <article><span>02</span><h3>Prepare documents</h3><p>Receive a checklist and organise the required files.</p></article>
-        <article><span>03</span><h3>Review & apply</h3><p>Get guidance before the application is submitted.</p></article>
-        <article><span>04</span><h3>Track & travel</h3><p>Stay informed until your visa decision is received.</p></article>
+    <section class="process" id="process">
+      <div class="section-shell">
+        <div class="section-heading centered">
+          <p class="eyebrow">Clear steps from enquiry to travel</p>
+          <h2>A simple visa process for busy travellers.</h2>
+        </div>
+
+        <div class="process-grid">
+          <article><span>01</span><h3>Select destination</h3><p>Pick your visa country and share your travel purpose.</p></article>
+          <article><span>02</span><h3>Prepare documents</h3><p>Receive a checklist and organise the required files.</p></article>
+          <article><span>03</span><h3>Review & apply</h3><p>Get guidance before the application is submitted.</p></article>
+          <article><span>04</span><h3>Track & travel</h3><p>Stay informed until your visa decision is received.</p></article>
+        </div>
       </div>
     </section>
 
@@ -123,11 +153,12 @@
         <p class="eyebrow">Why choose Your Travel Visas</p>
         <h2>Designed for travellers who want clarity before they book.</h2>
       </div>
+
       <div class="why-grid">
-        <div><b>Premium Enquiry Flow</b><p>Every lead is captured with destination, visa type and travel date.</p></div>
-        <div><b>Country-Specific Guidance</b><p>Each destination section includes useful details and quick FAQs.</p></div>
-        <div><b>Mobile Friendly</b><p>The page is built for fast browsing and enquiry submission on phones.</p></div>
-        <div><b>Professional Presentation</b><p>Clean visuals, strong typography and a polished travel-service layout.</p></div>
+        <div><i class="fa-solid fa-route"></i><b>Premium Enquiry Flow</b><p>Capture destination, visa type and travel date cleanly.</p></div>
+        <div><i class="fa-solid fa-earth-asia"></i><b>Country-Specific Guidance</b><p>Each destination includes useful details and quick FAQs.</p></div>
+        <div><i class="fa-solid fa-mobile-screen-button"></i><b>Mobile Friendly</b><p>Built for fast browsing and enquiry submission on phones.</p></div>
+        <div><i class="fa-solid fa-shield-halved"></i><b>Professional Presentation</b><p>Clean visuals, strong typography and a polished layout.</p></div>
       </div>
     </section>
 
@@ -135,62 +166,67 @@
       <div class="enquiry-copy">
         <p class="eyebrow">Start your visa enquiry</p>
         <h2>Let our visa team contact you.</h2>
-        <p>Share your destination and travel plan. The team at Your Travel Visas will contact you with the next steps and document guidance.</p>
+        <p>Share your destination and travel plan. The team at Your Travel Visas will contact you with next steps and document guidance.</p>
+
         <div class="contact-panel">
-          <a href="tel:+919876543210">Call: +91 98765 43210</a>
-          <a href="mailto:info@yourtravelvisas.com">Email: info@yourtravelvisas.com</a>
-          <span>Office Hours: Mon - Sat, 9:30 AM - 7:00 PM</span>
+          <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+          <a href="mailto:info@yourtravelvisas.com"><i class="fa-solid fa-envelope"></i> info@yourtravelvisas.com</a>
+          <span><i class="fa-regular fa-clock"></i> Mon - Sat, 9:30 AM - 7:00 PM</span>
         </div>
       </div>
+
       <form class="enquiry-form" id="enquiryForm">
         <div class="form-row">
           <label>Full Name<input type="text" name="name" placeholder="Enter your name" required /></label>
           <label>Phone Number<input type="tel" name="phone" placeholder="+91 98765 43210" required /></label>
         </div>
+
         <div class="form-row">
           <label>Email<input type="email" name="email" placeholder="name@example.com" /></label>
           <label>Destination<select name="destination" id="destinationSelect" required><option value="">Choose country</option></select></label>
         </div>
+
         <div class="form-row">
           <label>Travel Date<input type="date" name="travelDate" /></label>
           <label>Visa Type<select name="visaType"><option>Tourist Visa</option><option>Business Visa</option><option>Family Visit Visa</option><option>Student Visa</option></select></label>
         </div>
+
         <label>Message<textarea name="message" rows="4" placeholder="Tell us about your travel plan"></textarea></label>
         <button class="btn primary full" type="submit">Submit Enquiry</button>
         <p class="form-note" id="formNote">Your information is handled with care.</p>
       </form>
+
+    </section>
+    <section class="section-shell logo-strip" aria-label="Service promise">
+      <span><i class="fa-solid fa-passport"></i> Tourist & business visas</span>
+      <span><i class="fa-solid fa-file-shield"></i> Document checklist support</span>
+      <span><i class="fa-solid fa-clipboard-check"></i> Application guidance</span>
+      <span><i class="fa-solid fa-headset"></i> Contact-first service</span>
     </section>
   </main>
-  <div class="bottom-contact-bar">
 
-      <a href="mailto:info@yourtravelvisas.com" class="contact-link">
-          <i class="fa-solid fa-envelope"></i>
-          <span>Email</span>
-      </a>
-
-      <a href="https://wa.me/919876543210" target="_blank" class="contact-link">
-          <i class="fa-brands fa-whatsapp"></i>
-          <span>WhatsApp</span>
-      </a>
-
-      <a href="tel:+919876543210" class="contact-link">
-          <i class="fa-solid fa-phone"></i>
-          <span>Call</span>
-      </a>
-
+  <div class="bottom-contact-bar" aria-label="Quick contact options">
+    <a href="mailto:info@yourtravelvisas.com" class="contact-link" aria-label="Email Your Travel Visas"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
+    <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="contact-link" aria-label="WhatsApp Your Travel Visas"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="tel:+919876543210" class="contact-link" aria-label="Call Your Travel Visas"><i class="fa-solid fa-phone"></i><span>Call</span></a>
   </div>
+
+
+
   <footer class="footer">
     <div class="section-shell footer-inner">
       <div>
         <a href="#top" class="brand footer-brand"><img src="images/logo.jpeg" alt="Your Travel Visas logo" /><span>Your Travel Visas</span></a>
         <p>Premium visa assistance for tourist, business and family travellers. Country details are provided for guidance and may vary based on traveller profile and embassy updates.</p>
       </div>
+
       <div>
         <b>Quick Links</b>
         <a href="#countries">Visa Countries</a>
         <a href="#process">Process</a>
         <a href="#enquiry">Enquiry</a>
       </div>
+
       <div>
         <b>Contact</b>
         <a href="tel:+919876543210">+91 98765 43210</a>
