@@ -86,9 +86,7 @@ img{max-width:100%;display:block}
   display:flex;
   align-items:center;
   overflow:hidden;
-  background:
-    linear-gradient(90deg,rgba(2,10,24,.76),rgba(2,10,24,.46)),
-    url("images/aircraft.webp") center/cover no-repeat;
+
 }
 .hero-overlay{
   position:absolute;
@@ -248,7 +246,7 @@ h1,h2{font-family:"Playfair Display",serif;letter-spacing:-.055em;line-height:.9
 .bottom-contact-bar{position:fixed;left:0;right:0;bottom:0;height:68px;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.97);backdrop-filter:blur(18px);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.07);z-index:1001}.contact-link{display:flex;align-items:center;justify-content:center;gap:10px;color:#071224;font-weight:950;border-right:1px solid var(--line);transition:.25s ease}.contact-link:last-child{border-right:0}.contact-link i{font-size:18px}.contact-link:hover{background:#f8fafc}.contact-link:hover i{transform:translateY(-2px)}
 
 /* Footer */
-.footer{background:#05070d;color:#fff;padding:58px 0 24px}.footer-inner{display:grid;grid-template-columns:1.5fr .7fr .85fr;gap:30px}.footer .brand{color:#fff}.footer p,.footer span{color:rgba(255,255,255,.64);line-height:1.75}.footer a{display:block;color:rgba(255,255,255,.82);margin-top:10px}.footer b{display:block;margin-bottom:12px}.footer-brand{margin-bottom:16px}.footer-brand img{width:70px;height:70px}.copyright{width:min(1220px,calc(100% - 40px));margin:36px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);text-align:center;color:rgba(255,255,255,.6)}
+.footer{background:#05070d;color:#fff;padding:58px 0 24px}.footer-inner{display:grid;grid-template-columns:1.35fr .65fr .8fr 1fr;gap:30px}.footer .brand{color:#fff}.footer p,.footer span{color:rgba(255,255,255,.64);line-height:1.75}.footer a{display:block;color:rgba(255,255,255,.82);margin-top:10px}.footer b{display:block;margin-bottom:12px}.footer-brand{margin-bottom:16px}.footer-brand img{width:70px;height:70px}.copyright{width:min(1220px,calc(100% - 40px));margin:36px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);text-align:center;color:rgba(255,255,255,.6)}
 
 @media(max-width:1100px){.visa-grid{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:clamp(3rem,8vw,5.4rem)}}
 @media(max-width:980px){.navbar{height:84px}.brand img{width:68px;height:68px}.hero{min-height:500px}.logo-strip,.process-grid,.visa-grid{grid-template-columns:repeat(2,1fr)}.toolbar,.section-heading{display:block}.filter-pills{margin-top:14px}.why,.enquiry-wrap{grid-template-columns:1fr}.visa-card.is-open{grid-column:span 2}}
@@ -293,9 +291,6 @@ h1,h2{font-family:"Playfair Display",serif;letter-spacing:-.055em;line-height:.9
     transition:.4s ease;
 }
 
-.brand:hover img{
-    transform:rotate(8deg) scale(1.05);
-}
 
 .brand-name{
     display:flex;
@@ -374,9 +369,143 @@ h1,h2{font-family:"Playfair Display",serif;letter-spacing:-.055em;line-height:.9
 }
 
 .brand-name span:nth-child(2){
-    color:#0866ff  !important;
+    color:#d8b46a  !important;
 }
 
 .brand-name span:nth-child(3){
     color:#000 !important;
+}
+
+
+/* Footer partner cards */
+.footer-partners{
+  display:grid;
+  gap:12px;
+}
+
+.partner-card{
+  display:flex !important;
+  align-items:center;
+  gap:12px;
+  margin-top:0 !important;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  transition:.25s ease;
+}
+
+.partner-card:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.10);
+}
+
+.partner-card img{
+  width:54px;
+  height:54px;
+  object-fit:contain;
+  border-radius:14px;
+  background:#fff;
+  padding:6px;
+  flex:0 0 auto;
+}
+
+.partner-card span{
+  color:rgba(255,255,255,.82) !important;
+  line-height:1.35 !important;
+  font-weight:850;
+}
+
+.partner-card strong{
+  display:block;
+  color:#d8b46a;
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:3px;
+}
+
+.enquiry-copy h2,
+.section-heading h2{
+  font-family:"Playfair Display",serif !important;
+}
+/* Same premium serif font everywhere */
+body,
+button,
+input,
+select,
+textarea,
+a,
+p,
+span,
+label,
+b,
+strong,
+li,
+summary,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand,
+.brand-name,
+.nav-links a,
+.footer,
+.footer a,
+.footer p{
+  font-family:"Playfair Display", serif !important;
+
+}
+
+/* Make company/header/footer text look like hero */
+.brand-name,
+.footer-brand span,
+.nav-links a,
+.footer b,
+.footer a{
+  font-weight:800 !important;
+  letter-spacing:-0.001em !important;
+}
+
+/* Keep form readable */
+input,
+select,
+textarea,
+button{
+  letter-spacing:0 !important;
+}
+
+.hero{
+    position:relative;
+    min-height:540px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:#000;
+}
+
+.hero-video{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(90deg,rgba(2,10,24,.76),rgba(2,10,24,.46)),
+        radial-gradient(circle at 20% 20%,rgba(8,102,255,.22),transparent 34%);
+    z-index:1;
+}
+
+.hero-inner{
+    position:relative;
+    z-index:2;
 }
